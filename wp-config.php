@@ -21,10 +21,10 @@ if (file_exists(dirname(__FILE__) . '/local-config.php')) {
 
 // Global DB config
 if (!defined('DB_NAME')) {
-	define('DB_NAME', 'fastpack');
+	define('DB_NAME', 'yeopress');
 }
 if (!defined('DB_USER')) {
-	define('DB_USER', 'root');
+	define('DB_USER', 'yeopress');
 }
 if (!defined('DB_PASSWORD')) {
 	define('DB_PASSWORD', 'drahaslo0');
@@ -52,14 +52,14 @@ if (!defined('DB_COLLATE')) {
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         'lM-{</6cL[o:7HfG7|NJ{gZm!gHN;S(_fon-omRmbc.Rm [y3v |]>x!VZBSNx<,');
-define('SECURE_AUTH_KEY',  '^/~>Ah9+|4>LbNw,j3hQT4ZzZ}o=eTt/a|mqN|L!QB2T+P*$W|IiO+@3O/eseN$n');
-define('LOGGED_IN_KEY',    'b>QQ#f1Rz!_xT~(Rd`M+!4Ay<L~ Tr}0fTB<cL-wtU^jQgRV,8`B5 p08)(c_0I.');
-define('NONCE_KEY',        'gA,D-_.d-o)5~C<`EJTHR?0}67|;BP[VtX$b S.kcwSmegg`>=,x+Cs97+&p|5Q{');
-define('AUTH_SALT',        '.5*s:Qg6x(U0u8ox+u.F)J_|w8J>$3:t{q+I<n7`OYppdsD96~!>XCYn2<(t8np)');
-define('SECURE_AUTH_SALT', '?|3HY5xaJFwbZA.[4(GCLA5TQ<^<IMK>L-q=>ip=oUq9j-Mq?9ti;xao%zmW<it/');
-define('LOGGED_IN_SALT',   'v_9qZQLJuREf#=jfsC+l; e=1{=<t|b]_>{=~451ds}b5lWzfeC+ma>iF75}]$tW');
-define('NONCE_SALT',       ';NcK)T~.etqgU!Sa[,o(N&GoYCP(}{u^IQu?VUXJ7w+jCLB4KUhg,(P-*K>68rCv');
+define('AUTH_KEY',         'ax%rzm`XDUzhl,,3@6])~UYt[&+{U~?hL(!|HX|i$;R+glH&t>mu)iw`nQO[>_V,');
+define('SECURE_AUTH_KEY',  'Z*GA-;QWaOA.VHG@O-T 9R9=lD^Lah;8ex7!y_,%?Y^l/5&~M+1@f}h#q||G__J|');
+define('LOGGED_IN_KEY',    'H=c-4| wJ0)Hs?igCdSP-Mrn5.^|PQ~-|2#.V$qic=2:@KtHYm#yA@d|0D6!B.Xl');
+define('NONCE_KEY',        'BY~h.On&C^=O{9w!l>JkD9TEK6Y*MBG5sD~Ia.IXZllo 7=h48lgIL4_|QYhh>IB');
+define('AUTH_SALT',        'NG]gjICLnZF8AR@Vd-Uo}Jt{}VSGhcd7gU o4I^k{#Xtin+LNC>Y@-X]7H)w%Yt|');
+define('SECURE_AUTH_SALT', 'pH[~9QxofB7uN[HABj5$znA.Gmz7Ol8S[oDSmR4:~}m-sN9}IBZ9 @So^-|8-*H3');
+define('LOGGED_IN_SALT',   '$U8OLe1e1 Z!=*J22X!/Oml@`r7,bHz^]c85c5Ei2-Fb>ECyqM1uY*bW,Me}- %D');
+define('NONCE_SALT',       'fHhnKt`U dKGF?g$c6V#maA4Oc(^I{J]2OK,0r9NNQLeg](:h`(n4iZ+:waG^!.d');
 
 /**#@-*/
 
@@ -81,6 +81,24 @@ $table_prefix  = 'wp_';
  */
 define('WPLANG', '');
 
+
+/**
+ * Set custom paths
+ *
+ * These are required because wordpress is installed in a subdirectory.
+ */
+if (!defined('WP_SITEURL')) {
+	define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] . ':1234/cms');
+}
+if (!defined('WP_HOME')) {
+	define('WP_HOME',    'http://' . $_SERVER['SERVER_NAME'] . ':1234');
+}
+if (!defined('WP_CONTENT_DIR')) {
+	define('WP_CONTENT_DIR', dirname(__FILE__) . '/wp-content');
+}
+if (!defined('WP_CONTENT_URL')) {
+	define('WP_CONTENT_URL', 'http://' . $_SERVER['SERVER_NAME'] . ':1234/wp-content');
+}
 
 
 /**
