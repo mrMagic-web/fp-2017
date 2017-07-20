@@ -12,23 +12,43 @@
 		<link rel="author" href="">
 		<?php wp_head() ?>
     </head>
-    <body <?php body_class() ?>>
-		<header id="page-header">
-			<h1 id="page-logo">
-				<?php if (!is_front_page()): ?>
-					<a href="<?php bloginfo('url') ?>" title="<?php bloginfo('name') ?> - <?php bloginfo('description') ?>">
-						<?php bloginfo('name') ?>
-					</a>
-				<?php else: ?>
-					<span>
-						<?php bloginfo('name') ?>
-					</span>
-				<?php endif; ?>
-			</h1>
-			<?php wp_nav_menu(array(
-				'theme_location' => 'main-nav',
-				'container'      => 'nav',
-				'container_id'   => 'primary-nav'
-			)) ?>
-		</header>
+    <body <?php body_class() ?> style="min-width: 320px;">
+	
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container">
+    <div class="row navbar-elements">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header col-lg-1 col-md-2">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#fp-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<?php echo home_url(); ?>">
+              <img src="<?php 
+                $custom_logo_id = get_theme_mod( 'custom_logo' );
+                $image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+                echo $image[0];?>" class="site-logo">
+            </a>
+    </div>
+    <div class="col-lg-11 col-md-10">
+        <?php
+            wp_nav_menu( array(
+                'menu'              => 'primary',
+                'theme_location'    => 'primary',
+                'depth'             => 2,
+                'container'         => 'div',
+                'container_class'   => 'collapse navbar-collapse',
+                'container_id'      => 'fp-navbar-collapse',
+                'menu_class'        => 'nav navbar-nav',
+                'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+                'walker'            => new WP_Bootstrap_Navwalker())
+            );
+        ?>
+    </div>
+        </div>
+    </div>
+</nav>
+
 		<div id="content-wrap">

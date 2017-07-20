@@ -13,6 +13,21 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 
+		//Autprefier
+
+		autoprefixer:{
+			options: {
+				 browsers: ['last 2 versions']
+			},
+			//prefix all files
+			multiple_files:{
+				expand: true,
+				flatten: true,
+				src: '*.css',
+				dest: ''
+			}
+		},
+
 		// Watches for changes and runs tasks
 		watch : {
 			sass : {
@@ -223,6 +238,7 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-autoprefixer');
 	grunt.loadNpmTasks('grunt-bower-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-imagemin');

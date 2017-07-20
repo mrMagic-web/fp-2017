@@ -1,4 +1,9 @@
 <?php
+
+// Register Custom Navigation Walker
+// require_once('functions/navbar.php');
+require_once('functions/wp-bootstrap-navwalker.php');
+
 add_action('wp_enqueue_scripts', 'theme_enqueue_scripts');
 function theme_enqueue_scripts(){
 
@@ -17,6 +22,23 @@ function theme_enqueue_scripts(){
 	wp_enqueue_style('global', get_bloginfo('template_url') . '/css/global.css');
 }
 
+add_theme_support( 'custom-logo' );
+
+function fp_theme_setup(){
+	register_nav_menus( array(
+	        'primary' => __( 'Primary Menu'),
+	) );
+
+
+	//Add logo area
+	add_theme_support( 'custom-logo', array(
+		'flex-height' => true,
+		'flex-width'  => true,
+		'header-text' => array( 'site-title', 'site-description' ),
+	) );
+}
+add_action('after_setup_theme', 'fp_theme_setup');
+
 //Add Featured Image Support
 add_theme_support('post-thumbnails');
 
@@ -27,17 +49,6 @@ function removeHeadLinks() {
 }
 add_action('init', 'removeHeadLinks');
 remove_action('wp_head', 'wp_generator');
-
-function register_menus() {
-	register_nav_menus(
-		array(
-			'main-nav' => 'Main Navigation',
-			'secondary-nav' => 'Secondary Navigation',
-			'sidebar-menu' => 'Sidebar Menu'
-		)
-	);
-}
-add_action( 'init', 'register_menus' );
 
 function register_widgets(){
 
@@ -52,3 +63,4 @@ function register_widgets(){
 
 }//end register_widgets()
 add_action( 'widgets_init', 'register_widgets' );
+
